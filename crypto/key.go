@@ -16,7 +16,7 @@ type PrivateKey struct {
 	key ed25519.PrivateKey
 }
 
-func (p *PrivateKey) Byte() []byte {
+func (p *PrivateKey) Bytes() []byte {
 	return p.key
 }
 
@@ -34,6 +34,10 @@ func (p *PrivateKey) Public() *PublicKey {
 	return &PublicKey{
 		key: pKey,
 	}
+}
+
+func (p *PublicKey) Bytes() []byte {
+	return p.key
 }
 
 func GeneratePrivateKey() *PrivateKey {
