@@ -20,8 +20,10 @@ func (p *PrivateKey) Bytes() []byte {
 	return p.key
 }
 
-func (p *PrivateKey) Sign(msg []byte) []byte {
-	return ed25519.Sign(p.key, msg)
+func (p *PrivateKey) Sign(msg []byte) *Signature {
+	return &Signature{
+		value: ed25519.Sign(p.key, msg),
+	}
 }
 
 type PublicKey struct {
@@ -49,4 +51,12 @@ func GeneratePrivateKey() *PrivateKey {
 	return &PrivateKey{
 		key: ed25519.NewKeyFromSeed(seed),
 	}
+}
+
+type Signature struct {
+	value []byte
+}
+
+func (s *Signature) Verify(msg []byte, pubkey *PublicKey) bool {
+	return ed25519.Verify(pubkey.key, msg, s.value)
 }
