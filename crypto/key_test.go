@@ -1,8 +1,6 @@
 package crypto
 
 import (
-	"encoding/hex"
-	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -41,5 +39,18 @@ func TestPublicKeyToAddress(t *testing.T) {
 
 	address := pubKey.Address()
 	assert.Equal(t, addressLen, len(address.Bytes()))
-	fmt.Println(address, hex.EncodeToString(pubKey.Bytes()))
+}
+
+func TestNewPrivateKeyFromSeed(t *testing.T) {
+	var (
+		seed       = "5ca645d0c452e0f4c8715c8c0e9b08c45f84d1156aef9ef4c2875c064b4552ff"
+		privKey    = NewPrivateKeyFromString(seed)
+		addressStr = "f704cba9b4835248211c1688eddb8c242af97cc0"
+	)
+
+	assert.Equal(t, privKeyLen, len(privKey.Bytes()))
+
+	address := privKey.Public().Address()
+
+	assert.Equal(t, address.String(), addressStr)
 }
