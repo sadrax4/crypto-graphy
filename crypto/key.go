@@ -32,6 +32,23 @@ type PublicKey struct {
 	key ed25519.PublicKey
 }
 
+func NewPrivateKeyFromString(p string) *PrivateKey {
+	b, err := hex.DecodeString(p)
+	if err != nil {
+		panic(err)
+	}
+	return NewPrivateKeyFromSeed(b)
+}
+
+func NewPrivateKeyFromSeed(seed []byte) *PrivateKey {
+	if len(seed) != seedKeyLen {
+		panic("invalid private key, must be 32")
+	}
+	return &PrivateKey{
+		key: ed25519.NewKeyFromSeed(seed),
+	}
+}
+
 func (p *PrivateKey) Public() *PublicKey {
 	pKey := make([]byte, pubKeyLen)
 	copy(pKey, p.key[32:])
