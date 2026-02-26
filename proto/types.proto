@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+message Block {
+  Header               header      = 1;
+  repeated Transaction transaction = 2;
+};
+
+message Header {
+  int32 version   = 1;
+  int32 height    = 2;
+  bytes prev_hash = 3;
+  bytes root_hash = 4;
+  int64 timestamp = 5;
+};
+
+message Transaction { };
