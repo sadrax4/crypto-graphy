@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+option go_package = "github.com/sadrax4/crypto-graphy";
+
 message Block {
   Header               header      = 1;
   repeated Transaction transaction = 2;
