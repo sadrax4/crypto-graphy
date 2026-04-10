@@ -86,6 +86,10 @@ func (s *Signature) Verify(msg []byte, pubkey *PublicKey) bool {
 	return ed25519.Verify(pubkey.key, msg, s.value)
 }
 
+func (s *Signature) Bytes() []byte {
+	return s.value
+}
+
 type Address struct {
 	value []byte
 }
