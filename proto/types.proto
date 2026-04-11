@@ -28,6 +28,7 @@ message TxOutput{
 };
 
 message Transaction {
-  int32 version = 1;
-  
+  int32             version = 1;
+  repeated TxInput  inputs  = 2;
+  repeated TxOutput ouputs  = 3;
 };
