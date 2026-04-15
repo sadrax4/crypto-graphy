@@ -23,3 +23,14 @@ func HashTransaction(t *proto.Transaction) []byte {
 	hash := sha256.Sum256(b)
 	return hash[:]
 }
+
+func VerifyTransaction(tx *proto.Transaction) bool {
+	for _, input := range tx.Inputs {
+		sig := crypto.SignatureFromBytes(input.Signature)
+		publicKey := crypto.PublicKeyFromBytes(input.PublicKey)
+		if !sig.Verify(HashTransaction(tx), publicKey) {
+			return false
+		}
+	}
+	return true
+}
