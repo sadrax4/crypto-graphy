@@ -30,4 +30,18 @@ func TestNewTransaction(t *testing.T) {
 		Amount:  95,
 		Address: fromAddress,
 	}
+
+	tx := &proto.Transaction{
+		Version: 1,
+		Inputs: []*proto.TxInput{
+			input,
+		},
+		Ouputs: []*proto.TxOutput{
+			ouput1,
+			output2,
+		},
+	}
+
+	sig := SignTransaction(fromPrivKey, tx)
+	input.Signature = sig.Bytes()
 }
