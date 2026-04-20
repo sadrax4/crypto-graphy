@@ -2,6 +2,14 @@ syntax = "proto3";
 
 option go_package = "github.com/sadrax4/crypto-graphy";
 
+service Node {
+  rpc HandleTransaction(Transaction) returns (None);
+
+}
+
+message None {
+
+}
 message Block {
   Header               header      = 1;
   repeated Transaction transaction = 2;
