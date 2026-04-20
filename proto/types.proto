@@ -2,14 +2,15 @@ syntax = "proto3";
 
 option go_package = "github.com/sadrax4/crypto-graphy";
 
+// Service Node handles transaction processing.
 service Node {
+  // Service Node handles transaction processing.
   rpc HandleTransaction(Transaction) returns (None);
-
 }
 
-message None {
+message None{}
 
-}
+
 message Block {
   Header               header      = 1;
   repeated Transaction transaction = 2;
