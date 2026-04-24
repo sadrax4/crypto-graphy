@@ -24,5 +24,5 @@ func main() {
 }
 
 func makeTransaction() {
-	ki
+	kirr
 }
