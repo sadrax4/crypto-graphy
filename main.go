@@ -23,4 +23,6 @@ func main() {
 	grpcServer.Serve(ln)
 }
 
-func makeTransaction() {}
+func makeTransaction() {
+	kir
+}
